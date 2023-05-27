@@ -1,3 +1,4 @@
+This is the frontend of the full stack leader board app. It has CRUD functionality. The technologies used are Next js, Figma and Bootstrap
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
