@@ -1,13 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
 const url = "https://leader-board-backend.vercel.app/api/v1/score/";
-
 const initialState = {
   details: [],
   isLoading: true,
 };
-
 export const getScores = createAsyncThunk("score/getScores", async () => {
   try {
     const { data } = await axios(url);
@@ -19,7 +16,6 @@ export const getScores = createAsyncThunk("score/getScores", async () => {
     throw error;
   }
 });
-
 const scoreSlice = createSlice({
   name: "score",
   initialState,
@@ -62,9 +58,6 @@ const scoreSlice = createSlice({
       });
   },
 });
-
 export const isLoading = (state) => state.isLoading;
-
 export const { addDetails, deleteDetails, updateDetails } = scoreSlice.actions;
-
 export default scoreSlice.reducer;
