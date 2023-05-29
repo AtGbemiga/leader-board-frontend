@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ScoreContainer } from "./components/ScoreContainer";
 import { getScores } from "./store/features/score/scoreSlice";
 import { useDispatch } from "react-redux";
@@ -9,12 +9,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export default function Home() {
   const dispatch = useDispatch();
   const [isCardFixed, setCardFixed] = useState(false);
+  const postScoreRef = useRef(null);
 
   useEffect(() => {
     dispatch(getScores());
 
     const handleScroll = () => {
-      const postScoreElement = document.getElementById("postScore");
+      const postScoreElement = postScoreRef.current;
       const cardElement = document.getElementById("card");
 
       if (postScoreElement && cardElement) {
@@ -37,7 +38,7 @@ export default function Home() {
 
   return (
     <main className="container-lg">
-      <PostScore />
+      <PostScore ref={postScoreRef} />
       <div className="sticky-card-wrapper">
         <div
           id="card"
