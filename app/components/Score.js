@@ -5,6 +5,12 @@ import {
   deleteDetails,
   updateDetails,
 } from "../store/features/score/scoreSlice";
+import {
+  openModal,
+  closeModal,
+  deleteOpenModal,
+  deleteCloseModal,
+} from "../store/features/modal/modalSlice";
 
 export const Score = ({ _id, name, exactScore, index, editMode }) => {
   const dispatch = useDispatch();
@@ -19,6 +25,12 @@ export const Score = ({ _id, name, exactScore, index, editMode }) => {
     try {
       axios.delete(url);
       dispatch(deleteDetails(_id));
+      setTimeout(() => {
+        dispatch(deleteOpenModal());
+        setTimeout(() => {
+          dispatch(deleteCloseModal());
+        }, 3000);
+      }, 3000);
     } catch (error) {
       console.log(error.response);
       throw error;
@@ -43,6 +55,13 @@ export const Score = ({ _id, name, exactScore, index, editMode }) => {
     try {
       axios.patch(url, formdata);
       dispatch(updateDetails({ _id, ...formdata }));
+      setTimeout(() => {
+        dispatch(openModal());
+        setTimeout(() => {
+          dispatch(closeModal());
+        }, 3000);
+      }, 3000);
+
       setEditMode(false);
     } catch (error) {
       console.log(error.response);

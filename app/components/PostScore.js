@@ -2,8 +2,14 @@ import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addDetails } from "../store/features/score/scoreSlice";
+import {
+  postOpenModal,
+  postCloseModal,
+} from "../store/features/modal/modalSlice";
+
 export const PostScore = () => {
   const dispatch = useDispatch();
+
   const [formdata, setFormData] = useState({
     name: "",
     exactScore: "",
@@ -22,6 +28,12 @@ export const PostScore = () => {
     try {
       const { data } = await axios.post(url, formdata);
       dispatch(addDetails(data.name, data.exactScore));
+      setTimeout(() => {
+        dispatch(postOpenModal());
+        setTimeout(() => {
+          dispatch(postCloseModal());
+        }, 3000);
+      }, 3000);
     } catch (error) {
       console.log(error.response);
       throw error;
