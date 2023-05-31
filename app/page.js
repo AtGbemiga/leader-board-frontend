@@ -7,6 +7,7 @@ import { PostScore } from "./components/PostScore";
 import Modal from "./components/modal/Modal";
 import DeleteModal from "./components/modal/Delete";
 import PostModal from "./components/modal/Post";
+import { Header } from "./components/Header/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Home() {
@@ -45,25 +46,7 @@ export default function Home() {
   return (
     <main className="container-lg">
       <PostScore ref={postScoreRef} />
-      <div className="sticky-card-wrapper">
-        <div
-          id="card"
-          className={`card ${isCardFixed ? "fixed" : ""}`}
-          style={{ backgroundColor: isCardFixed ? "blue" : "" }}
-        >
-          <div className="row card-body">
-            <div className="col">
-              <h6 style={{ margin: 0, padding: 0 }}>Name</h6>
-            </div>
-            <div className="col">
-              <h6 style={{ margin: 0, padding: 0 }}>Score</h6>
-            </div>
-            <div className="col col-lg-2">
-              <h6 style={{ margin: 0, padding: 0 }}>Edit/Delete</h6>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Header isCardFixed={isCardFixed} />
       <ScoreContainer />
 
       {isOpenPost && <PostModal />}

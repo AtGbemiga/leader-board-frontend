@@ -12,7 +12,7 @@ import {
   deleteCloseModal,
 } from "../store/features/modal/modalSlice";
 
-export const Score = ({ _id, name, exactScore, index, editMode }) => {
+export const Score = ({ _id, name, exactScore, editMode }) => {
   const dispatch = useDispatch();
   const [formdata, setFormData] = useState({
     name: name,
