@@ -1,11 +1,7 @@
-export const Header = ({ isCardFixed }) => {
+export const Header = () => {
   return (
     <div className="sticky-card-wrapper">
-      <div
-        id="card"
-        className={`card ${isCardFixed ? "fixed" : ""}`}
-        style={{ backgroundColor: isCardFixed ? "blue" : "" }}
-      >
+      <div id="card" className="card">
         <div className="row card-body">
           <div className="col">
             <h6 style={{ margin: 0, padding: 0 }}>Name</h6>
