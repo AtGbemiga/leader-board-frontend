@@ -23,13 +23,20 @@ export default function Home() {
   useEffect(() => {
     dispatch(getScores());
   }, []);
-  //<ScoreContainer />
+
+  const allOrSearchData =
+    results.length !== 0 ? (
+      <SearchResultsList results={results} />
+    ) : (
+      <ScoreContainer />
+    );
+  //
   return (
     <main className="container-lg">
       <Search setResults={setResults} />
       <PostScore />
       <Header />
-      <SearchResultsList results={results} />
+      {allOrSearchData}
 
       {isOpenPost && <PostModal />}
       {isOpenDelete && <DeleteModal />}
