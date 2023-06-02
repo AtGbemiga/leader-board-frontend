@@ -1,23 +1,36 @@
-import { getScores } from "@/app/store/features/score/scoreSlice";
 import { useState } from "react";
-import axios from "axios";
+import { useSelector } from "react-redux";
 
 export const Search = ({ setResults }) => {
   const [input, setInput] = useState("");
+  const [error, setError] = useState(false);
+  const data = useSelector((store) => store.score.details);
 
-  const fetchData = async (value) => {
-    const url = "https://leader-board-backend.vercel.app/api/v1/score/";
-    try {
-      const { data } = await axios.get(url);
-      const result = data.filter((user) => {
-        return (
-          value && user && user.name && user.name.toLowerCase().includes(value)
-        );
-      });
-      setResults(result);
-    } catch (error) {
-      console.log(error);
+  const fetchData = (value) => {
+    const lowercaseValue = value ? value.toString().toLowerCase() : "";
+    const hasNumber = /\d/.test(lowercaseValue);
+    const hasString = /[a-z]/i.test(lowercaseValue);
+
+    if (hasNumber && hasString) {
+      setError(true);
+      setResults([]);
+      return;
     }
+
+    const result = data.filter((user) => {
+      const lowercaseName =
+        user && user.name ? user.name.toString().toLowerCase() : "";
+      const exactScore =
+        user && user.exactScore ? user.exactScore.toString().toLowerCase() : "";
+
+      return (
+        lowercaseName.includes(lowercaseValue) ||
+        exactScore.includes(lowercaseValue)
+      );
+    });
+
+    setError(false);
+    setResults(result);
   };
 
   const handleChange = (value) => {
@@ -26,6 +39,9 @@ export const Search = ({ setResults }) => {
   };
   return (
     <>
+      {error && (
+        <p className="text-danger">Enter number or letter, not both.</p>
+      )}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
