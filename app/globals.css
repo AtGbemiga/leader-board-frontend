@@ -13,3 +13,33 @@
   
 
   
+  .parent{
+    height: 200px;
+    width: 200px;
+    background-color: #f2f5fd;
+    margin: auto;
+    margin-top: 5rem;
+}
+
+.child {
+    height: 50%;
+    width: 50%;
+    background: linear-gradient(135deg, #ee0b5c 0%, #2191f9 100%);
+    animation: left-to-right 1s ease-in forwards infinite alternate;
+}
+
+
+@keyframes left-to-right{
+    0% {
+        transform: translate(0);
+    }
+    33% {
+        transform: translateY(100%);
+    }
+    66%{
+        transform: translateY(100%) translateX(100%)
+    }
+    100%{
+        transform: translateX(100%);
+    }
+}
