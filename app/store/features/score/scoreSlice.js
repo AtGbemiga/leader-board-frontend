@@ -3,7 +3,7 @@ import axios from "axios";
 const url = "https://leader-board-backend.vercel.app/api/v1/score/";
 const initialState = {
   details: [],
-  isLoading: true,
+  isLoading: false,
 };
 export const getScores = createAsyncThunk("score/getScores", async () => {
   try {

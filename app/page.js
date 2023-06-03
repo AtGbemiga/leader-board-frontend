@@ -11,13 +11,15 @@ import { Header } from "./components/Header/Header";
 import { Search } from "./components/search/Search";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { SearchResultsList } from "./components/search/SearchResultsList";
+import { Loader } from "./components/Loader/Loader";
 
 export default function Home() {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((store) => store.modal);
   const { isOpenDelete } = useSelector((store) => store.modal);
   const { isOpenPost } = useSelector((store) => store.modal);
-  //fake search. Not the proper method
+  const { isLoading } = useSelector((store) => store.score);
+  //For search. Search Edit && Delete not working
   const [results, setResults] = useState([]);
 
   useEffect(() => {
@@ -36,6 +38,7 @@ export default function Home() {
       <Search setResults={setResults} />
       <PostScore />
       <Header />
+      {isLoading && <Loader />}
       {allOrSearchData}
 
       {isOpenPost && <PostModal />}

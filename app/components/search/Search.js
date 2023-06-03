@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 
 export const Search = ({ setResults }) => {
   const [input, setInput] = useState("");
-  const [error, setError] = useState(true);
-  const [searchBox, setSearchBox] = useState(true);
+  const [error, setError] = useState(false);
+  const [searchBox, setSearchBox] = useState(false);
   const searchRef = useRef(null);
   const data = useSelector((store) => store.score.details);
 
