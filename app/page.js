@@ -19,7 +19,6 @@ export default function Home() {
   const { isOpenDelete } = useSelector((store) => store.modal);
   const { isOpenPost } = useSelector((store) => store.modal);
   const { isLoading } = useSelector((store) => store.score);
-  //For search. Search Edit && Delete not working
   const [results, setResults] = useState([]);
 
   useEffect(() => {

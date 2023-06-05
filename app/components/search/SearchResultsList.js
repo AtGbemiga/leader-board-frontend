@@ -5,7 +5,9 @@ export const SearchResultsList = ({ results }) => {
     <div>
       {" "}
       {results.map((result, id) => {
-        return <SearchResult result={result} key={id} />;
+        return (
+          <SearchResult key={result._id} _id={result._id} result={result} />
+        );
       })}
     </div>
   );

@@ -20,10 +20,10 @@ export const SearchResult = ({ _id, result }) => {
   });
   const [isEditMode, setEditMode] = useState(false);
 
-  function handleDelete() {
+  async function handleDelete() {
     const url = `https://leader-board-backend.vercel.app/api/v1/score/${_id}`;
     try {
-      axios.delete(url);
+      await axios.delete(url);
       dispatch(deleteDetails(_id));
       setTimeout(() => {
         dispatch(deleteOpenModal());
@@ -38,7 +38,7 @@ export const SearchResult = ({ _id, result }) => {
   }
 
   function handleEdit() {
-    setEditMode(!isEditMode);
+    setEditMode((prevEditMode) => !prevEditMode);
   }
 
   function handleChange(event) {
@@ -49,11 +49,11 @@ export const SearchResult = ({ _id, result }) => {
     }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const url = `https://leader-board-backend.vercel.app/api/v1/score/${_id}`;
     try {
-      axios.patch(url, formdata);
+      await axios.patch(url, formdata);
       dispatch(updateDetails({ _id, ...formdata }));
       setTimeout(() => {
         dispatch(openModal());
@@ -114,7 +114,7 @@ export const SearchResult = ({ _id, result }) => {
               <p style={{ margin: 0, padding: 0 }}>{result.exactScore}</p>
             </div>
             <div className="col col-lg-2">
-              {/*<button
+              <button
                 onClick={handleEdit}
                 className="me-3 rounded-circle bg-success border border-0 text-light"
               >
@@ -148,7 +148,7 @@ export const SearchResult = ({ _id, result }) => {
                   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
                   <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
                 </svg>
-      </button>*/}
+              </button>
             </div>
           </div>
         </div>
