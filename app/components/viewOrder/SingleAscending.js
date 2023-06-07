@@ -5,6 +5,7 @@ import {
   updateDetails,
   deleteDetails,
 } from "@/app/store/features/score/scoreSlice";
+import { ascending } from "@/app/store/features/viewOrder/viewOrderSlice";
 
 export const SingleAscending = ({ _id, item }) => {
   const dispatch = useDispatch();
@@ -52,6 +53,18 @@ export const SingleAscending = ({ _id, item }) => {
     }
   }
 
+  async function handleDelete() {
+    const url = `https://leader-board-backend.vercel.app/api/v1/score/${_id}`;
+    try {
+      await axios.delete(url);
+      dispatch(deleteDetails(_id));
+      dispatch(ascending());
+    } catch (error) {
+      console.log(error.response);
+      throw error;
+    }
+  }
+
   return (
     <div>
       {isEditMode ? (
@@ -87,7 +100,7 @@ export const SingleAscending = ({ _id, item }) => {
             </div>
             <div>
               <button onClick={handleEdit}>Edit</button>
-              <button>Delete</button>
+              <button onClick={handleDelete}>Delete</button>
             </div>
           </div>
         </div>
