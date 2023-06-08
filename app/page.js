@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <main className="container-lg">
       <Search setResults={setResults} />
-      <section className="pt-3 d-flex gap-2">
+      <section className="pt-3">
         <Ascending />
         <Descending />
       </section>

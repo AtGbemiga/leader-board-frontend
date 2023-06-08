@@ -18,7 +18,7 @@ export const Ascending = () => {
   }
 
   return (
-    <div>
+    <span>
       <button onClick={handleAscending} className="btn btn-dark">
         Ascending
       </button>
@@ -26,6 +26,6 @@ export const Ascending = () => {
         displayOrder.map((item) => (
           <SingleAscending key={item._id} _id={item._id} item={item} />
         ))}
-    </div>
+    </span>
   );
 };
