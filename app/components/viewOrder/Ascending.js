@@ -1,11 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
 import { ascending } from "@/app/store/features/viewOrder/viewOrderSlice";
 import { SingleAscending } from "./SingleAscending";
+import { useEffect } from "react";
+import { setActiveComponent } from "@/app/store/features/activeComponent/activeSlice";
 
 export const Ascending = () => {
   const dispatch = useDispatch();
   const { details } = useSelector((store) => store.score);
   const { displayOrder } = useSelector((store) => store.viewOrder);
+
+  useEffect(() => {
+    dispatch(setActiveComponent("Component1"));
+  }, []);
 
   console.log("Details", details);
   function handleAscending() {

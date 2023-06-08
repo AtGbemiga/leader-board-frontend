@@ -1,6 +1,13 @@
 import { SearchResult } from "./SearchResult";
+import { useEffect } from "react";
+import { setActiveComponent } from "@/app/store/features/activeComponent/activeSlice";
+import { useDispatch } from "react-redux";
 
 export const SearchResultsList = ({ results }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setActiveComponent("Component4"));
+  }, []);
   return (
     <div>
       {" "}

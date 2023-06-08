@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { ScoreContainer } from "./components/ScoreContainer";
 import { getScores } from "./store/features/score/scoreSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { PostScore } from "./components/PostScore";
@@ -14,10 +13,12 @@ import { SearchResultsList } from "./components/search/SearchResultsList";
 import { Loader } from "./components/Loader/Loader";
 import { Ascending } from "./components/viewOrder/Ascending";
 import { Descending } from "./components/viewOrder/Descending";
+import { ScoreContainer } from "./components/ScoreContainer";
 
 export default function Home() {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((store) => store.modal);
+  const { activeComponent } = useSelector((store) => store.displayRank);
   const { isOpenDelete } = useSelector((store) => store.modal);
   const { isOpenPost } = useSelector((store) => store.modal);
   const { isLoading } = useSelector((store) => store.score);
@@ -27,22 +28,28 @@ export default function Home() {
     dispatch(getScores());
   }, []);
 
-  const allOrSearchData =
-    results.length !== 0 ? (
-      <SearchResultsList results={results} />
-    ) : (
-      <ScoreContainer />
-    );
-  //
+  const renderActiveComponent = () => {
+    switch (activeComponent) {
+      case "Component3":
+        return <ScoreContainer />;
+      case "Component2":
+        return <Descending />;
+      case "Component1":
+        return <Ascending />;
+      case "Component4":
+        return <Search setResults={setResults} />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <main className="container-lg">
       <Search setResults={setResults} />
       <PostScore />
       <Header />
       {isLoading && <Loader />}
-      {allOrSearchData}
-      <Ascending />
-      <Descending />
+      {renderActiveComponent()}
 
       {isOpenPost && <PostModal />}
       {isOpenDelete && <DeleteModal />}

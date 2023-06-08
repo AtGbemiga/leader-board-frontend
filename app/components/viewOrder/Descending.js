@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { descending } from "@/app/store/features/viewOrder/viewOrderSlice";
 import { SingleDescending } from "./SingleDescending";
+import { useEffect } from "react";
+import { setActiveComponent } from "@/app/store/features/activeComponent/activeSlice";
 
 export const Descending = () => {
   const dispatch = useDispatch();
@@ -8,6 +10,11 @@ export const Descending = () => {
   const { descendingOrder } = useSelector((store) => store.viewOrder);
 
   console.log("Details", details);
+
+  useEffect(() => {
+    dispatch(setActiveComponent("Component2"));
+  }, []);
+
   function handleDescending() {
     const sortedDetails = [...details].sort(
       (a, b) => parseFloat(b.exactScore) - parseFloat(a.exactScore)
