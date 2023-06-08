@@ -12,6 +12,8 @@ import { Search } from "./components/search/Search";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { SearchResultsList } from "./components/search/SearchResultsList";
 import { Loader } from "./components/Loader/Loader";
+import { Ascending } from "./components/viewOrder/Ascending";
+import { Descending } from "./components/viewOrder/Descending";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -35,6 +37,10 @@ export default function Home() {
   return (
     <main className="container-lg">
       <Search setResults={setResults} />
+      <section className="pt-3">
+        <Ascending />
+        <Descending />
+      </section>
       <PostScore />
       <Header />
       {isLoading && <Loader />}
