@@ -37,12 +37,14 @@ export default function Home() {
   return (
     <main className="container-lg">
       <Search setResults={setResults} />
+      <section className="pt-3 d-flex gap-2">
+        <Ascending />
+        <Descending />
+      </section>
       <PostScore />
       <Header />
       {isLoading && <Loader />}
       {allOrSearchData}
-      <Ascending />
-      <Descending />
 
       {isOpenPost && <PostModal />}
       {isOpenDelete && <DeleteModal />}

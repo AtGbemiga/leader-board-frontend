@@ -18,12 +18,14 @@ export const Ascending = () => {
   }
 
   return (
-    <>
-      <button onClick={handleAscending}>click</button>
+    <div>
+      <button onClick={handleAscending} className="btn btn-dark">
+        Ascending
+      </button>
       {displayOrder &&
         displayOrder.map((item) => (
           <SingleAscending key={item._id} _id={item._id} item={item} />
         ))}
-    </>
+    </div>
   );
 };

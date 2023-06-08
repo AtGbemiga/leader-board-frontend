@@ -6,6 +6,11 @@ import {
   deleteDetails,
 } from "@/app/store/features/score/scoreSlice";
 import { ascending } from "@/app/store/features/viewOrder/viewOrderSlice";
+import { openModal, closeModal } from "@/app/store/features/modal/modalSlice";
+import {
+  deleteOpenModal,
+  deleteCloseModal,
+} from "@/app/store/features/modal/modalSlice";
 
 export const SingleAscending = ({ _id, item }) => {
   const dispatch = useDispatch();
@@ -52,6 +57,12 @@ export const SingleAscending = ({ _id, item }) => {
           exactScore: ascendingForm.exactScore,
         })
       );
+      setTimeout(() => {
+        dispatch(openModal());
+        setTimeout(() => {
+          dispatch(closeModal());
+        }, 3000);
+      }, 3000);
       setIsEditMode(false); // Set isEditMode to false to exit the edit mode
     } catch (error) {
       console.log(error.response);
@@ -65,6 +76,12 @@ export const SingleAscending = ({ _id, item }) => {
       await axios.delete(url);
       dispatch(deleteDetails(_id));
       dispatch(ascending());
+      setTimeout(() => {
+        dispatch(deleteOpenModal());
+        setTimeout(() => {
+          dispatch(deleteCloseModal());
+        }, 3000);
+      }, 3000);
     } catch (error) {
       console.log(error.response);
       throw error;
