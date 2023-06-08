@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   displayOrder: [],
+  descendingOrder: [],
 };
 
 const viewOrderSlice = createSlice({
@@ -12,7 +13,7 @@ const viewOrderSlice = createSlice({
       state.displayOrder = action.payload;
     },
     descending: (state, action) => {
-      state.displayOrder = action.payload;
+      state.descendingOrder = action.payload;
     },
   },
 });

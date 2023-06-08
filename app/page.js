@@ -13,6 +13,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { SearchResultsList } from "./components/search/SearchResultsList";
 import { Loader } from "./components/Loader/Loader";
 import { Ascending } from "./components/viewOrder/Ascending";
+import { Descending } from "./components/viewOrder/Descending";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ export default function Home() {
       {isLoading && <Loader />}
       {allOrSearchData}
       <Ascending />
+      <Descending />
 
       {isOpenPost && <PostModal />}
       {isOpenDelete && <DeleteModal />}
