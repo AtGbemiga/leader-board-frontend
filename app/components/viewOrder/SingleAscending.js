@@ -28,7 +28,9 @@ export const SingleAscending = ({ _id, item }) => {
     setIsEditMode(true);
   }
 
-  async function handleUpdate() {
+  async function handleUpdate(e) {
+    e.preventDefault(); // Prevent default form submission behavior
+
     const url = `https://leader-board-backend.vercel.app/api/v1/score/${_id}`;
 
     const formData = {
@@ -38,15 +40,19 @@ export const SingleAscending = ({ _id, item }) => {
 
     try {
       await axios.patch(url, formData);
+      console.log("Dispatching updateDetails:", {
+        _id, // Pass the _id directly as a property
+        name: ascendingForm.name,
+        exactScore: ascendingForm.exactScore,
+      });
       dispatch(
         updateDetails({
-          _id,
-          formData: {
-            name: ascendingForm.name,
-            exactScore: ascendingForm.exactScore,
-          },
+          _id, // Pass the _id directly as a property
+          name: ascendingForm.name,
+          exactScore: ascendingForm.exactScore,
         })
       );
+      setIsEditMode(false); // Set isEditMode to false to exit the edit mode
     } catch (error) {
       console.log(error.response);
       throw error;

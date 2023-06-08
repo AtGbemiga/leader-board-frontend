@@ -12,6 +12,7 @@ export const Ascending = () => {
     const sortedDetails = [...details].sort(
       (a, b) => parseFloat(a.exactScore) - parseFloat(b.exactScore)
     );
+    dispatch(ascending());
     dispatch(ascending(sortedDetails));
     console.log("sorted", sortedDetails);
   }
