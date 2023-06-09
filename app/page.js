@@ -12,8 +12,8 @@ import { Search } from "./components/search/Search";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { SearchResultsList } from "./components/search/SearchResultsList";
 import { Loader } from "./components/Loader/Loader";
-import { Ascending } from "./components/viewOrder/Ascending";
-import { Descending } from "./components/viewOrder/Descending";
+import Link from "next/link";
+import { Filter } from "./store/features/svg/Filter";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -36,11 +36,13 @@ export default function Home() {
   //
   return (
     <main className="container-lg">
-      <Search setResults={setResults} />
-      <section className="pt-3">
-        <Ascending />
-        <Descending />
+      <section className="d-flex align-items-center">
+        <Search setResults={setResults} />
+        <Link href="/filter">
+          <Filter />
+        </Link>
       </section>
+
       <PostScore />
       <Header />
       {isLoading && <Loader />}
