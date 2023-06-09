@@ -1,3 +1,4 @@
+/* Header */
 .sticky-card-wrapper {
     position: sticky;
     top: 0;
@@ -12,7 +13,7 @@
   }
   
 
-  
+  /* Loader */
   .parent{
     height: 200px;
     width: 200px;

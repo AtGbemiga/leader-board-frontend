@@ -70,7 +70,8 @@ export const SingleDescending = ({ _id, item }) => {
     }
   }
 
-  async function handleDelete() {
+  async function handleDelete(e) {
+    e.preventDefault(); // Prevent default form submission behavior
     const url = `https://leader-board-backend.vercel.app/api/v1/score/${_id}`;
     try {
       await axios.delete(url);
@@ -137,7 +138,7 @@ export const SingleDescending = ({ _id, item }) => {
             <div className="col">
               <p style={{ margin: 0, padding: 0 }}>{item.exactScore}</p>
             </div>
-            <div className="col col-lg-2">
+            <div className="col col-lg-2 col-md-4 col-sm-3">
               <button
                 onClick={handleEdit}
                 className="me-3 rounded-circle bg-success border border-0 text-light"
@@ -159,7 +160,7 @@ export const SingleDescending = ({ _id, item }) => {
               </button>
               <button
                 onClick={handleDelete}
-                className="mx-3 rounded-circle bg-danger border border-0 text-light"
+                className="rounded-circle bg-danger border border-0 text-light"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

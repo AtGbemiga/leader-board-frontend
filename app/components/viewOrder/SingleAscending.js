@@ -34,7 +34,7 @@ export const SingleAscending = ({ _id, item }) => {
   }
 
   async function handleUpdate(e) {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault();
 
     const url = `https://leader-board-backend.vercel.app/api/v1/score/${_id}`;
 
@@ -45,14 +45,9 @@ export const SingleAscending = ({ _id, item }) => {
 
     try {
       await axios.patch(url, formData);
-      console.log("Dispatching updateDetails:", {
-        _id, // Pass the _id directly as a property
-        name: ascendingForm.name,
-        exactScore: ascendingForm.exactScore,
-      });
       dispatch(
         updateDetails({
-          _id, // Pass the _id directly as a property
+          _id,
           name: ascendingForm.name,
           exactScore: ascendingForm.exactScore,
         })
@@ -63,19 +58,20 @@ export const SingleAscending = ({ _id, item }) => {
           dispatch(closeModal());
         }, 3000);
       }, 3000);
-      setIsEditMode(false); // Set isEditMode to false to exit the edit mode
+      setIsEditMode(false);
     } catch (error) {
       console.log(error.response);
       throw error;
     }
   }
 
-  async function handleDelete() {
+  async function handleDelete(e) {
+    e.preventDefault();
     const url = `https://leader-board-backend.vercel.app/api/v1/score/${_id}`;
     try {
       await axios.delete(url);
       dispatch(deleteDetails(_id));
-      dispatch(ascending());
+      dispatch(ascending([]));
       setTimeout(() => {
         dispatch(deleteOpenModal());
         setTimeout(() => {
@@ -137,7 +133,7 @@ export const SingleAscending = ({ _id, item }) => {
             <div className="col">
               <p style={{ margin: 0, padding: 0 }}>{item.exactScore}</p>
             </div>
-            <div className="col col-lg-2">
+            <div className="col col-lg-2 col-md-4 col-sm-3">
               <button
                 onClick={handleEdit}
                 className="me-3 rounded-circle bg-success border border-0 text-light"
@@ -159,7 +155,7 @@ export const SingleAscending = ({ _id, item }) => {
               </button>
               <button
                 onClick={handleDelete}
-                className="mx-3 rounded-circle bg-danger border border-0 text-light"
+                className="rounded-circle bg-danger border border-0 text-light"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

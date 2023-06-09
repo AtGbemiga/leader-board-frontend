@@ -113,7 +113,7 @@ export const SearchResult = ({ _id, result }) => {
             <div className="col">
               <p style={{ margin: 0, padding: 0 }}>{result.exactScore}</p>
             </div>
-            <div className="col col-lg-2">
+            <div className="col col-lg-2 col-md-4 col-sm-3">
               <button
                 onClick={handleEdit}
                 className="me-3 rounded-circle bg-success border border-0 text-light"
@@ -135,7 +135,7 @@ export const SearchResult = ({ _id, result }) => {
               </button>
               <button
                 onClick={handleDelete}
-                className="mx-3 rounded-circle bg-danger border border-0 text-light"
+                className="rounded-circle bg-danger border border-0 text-light"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
