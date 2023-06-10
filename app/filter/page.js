@@ -9,6 +9,7 @@ import {
   descending,
 } from "../store/features/viewOrder/viewOrderSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { Header } from "../components/Header/Header";
 
 const page = () => {
   const dispatch = useDispatch();
@@ -37,23 +38,26 @@ const page = () => {
   }
 
   return (
-    <main className="container-lg d-lg-flex">
-      <section
-        className="col-lg-2 d-block bg-white d-lg-flex flex-column justify-content-center align-items-center"
-        style={{ height: "fit-content" }}
-      >
-        <div className="flex-item" style={{ width: "100%" }}>
-          <AscendBtn handleAscending={handleAscending} />
-        </div>
-        <div className="flex-item">
-          <DescendBtn handleDescending={handleDescending} />
-        </div>
-      </section>
-      <section className="col-lg-9 ms-lg-3">
-        {showAscending && <Ascending />}
-        {showDescending && <Descending />}
-      </section>
-    </main>
+    <div className="container-lg">
+      <main className="d-lg-flex">
+        <section
+          className="col-lg-2 d-block bg-white d-lg-flex flex-column justify-content-center align-items-center"
+          style={{ height: "fit-content" }}
+        >
+          <div className="flex-item" style={{ width: "100%" }}>
+            <AscendBtn handleAscending={handleAscending} />
+          </div>
+          <div className="flex-item">
+            <DescendBtn handleDescending={handleDescending} />
+          </div>
+        </section>
+        <section className="col-lg-9 ms-lg-3">
+          <Header />
+          {showAscending && <Ascending />}
+          {showDescending && <Descending />}
+        </section>
+      </main>
+    </div>
   );
 };
 export default page;
