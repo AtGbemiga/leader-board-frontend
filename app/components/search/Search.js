@@ -62,7 +62,7 @@ export const Search = ({ setResults }) => {
           width="24"
           height="24"
           fill="currentColor"
-          class="bi bi-search"
+          className="bi bi-search"
           viewBox="0 0 16 16"
           onClick={handleSvgClick}
           cursor="pointer"
