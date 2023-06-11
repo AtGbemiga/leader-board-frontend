@@ -21,7 +21,7 @@ export const Score = ({ _id, name, exactScore, editMode }) => {
   const [isEditMode, setEditMode] = useState(editMode);
 
   function handleDelete() {
-    const url = `https://leader-board-backend.vercel.app/api/v1/score/${_id}`;
+    const url = `https://leader-board-backend.vercel.app/api/v2/score/${_id}`;
     try {
       axios.delete(url);
       dispatch(deleteDetails(_id));
@@ -51,7 +51,7 @@ export const Score = ({ _id, name, exactScore, editMode }) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const url = `https://leader-board-backend.vercel.app/api/v1/score/${_id}`;
+    const url = `https://leader-board-backend.vercel.app/api/v2/score/${_id}`;
     try {
       axios.patch(url, formdata);
       dispatch(updateDetails({ _id, ...formdata }));
@@ -102,10 +102,7 @@ export const Score = ({ _id, name, exactScore, editMode }) => {
           </button>
         </form>
       ) : (
-        <div
-          className="card text-left my-2"
-          style={{ backgroundColor: "white" }}
-        >
+        <div className="" style={{ backgroundColor: "white" }}>
           <div className="row card-body">
             <div className="col">
               <p style={{ margin: 0, padding: 0 }}>{name}</p>

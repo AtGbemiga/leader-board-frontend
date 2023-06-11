@@ -24,8 +24,8 @@ export const PostScore = () => {
     }));
 
     if (name === "name") {
-      if (!/^([a-zA-Z]){1,25}$/.test(value)) {
-        setNameError("Enter only letters. Max of 25 characters.");
+      if (!/^([a-zA-Z]){3,25}$/.test(value)) {
+        setNameError("Enter only letters. Min 3, Max 25.");
       } else {
         setNameError("");
       }
@@ -43,7 +43,7 @@ export const PostScore = () => {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const url = "https://leader-board-backend.vercel.app/api/v1/score/";
+    const url = "https://leader-board-backend.vercel.app/api/v2/score/";
     try {
       const { data } = await axios.post(url, formdata);
       dispatch(addDetails(data.name, data.exactScore));

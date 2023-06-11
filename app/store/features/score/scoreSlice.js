@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const url = "https://leader-board-backend.vercel.app/api/v1/score/";
+const url = "https://leader-board-backend.vercel.app/api/v2/score/";
 const initialState = {
   details: [],
   isLoading: false,
@@ -29,6 +29,7 @@ const scoreSlice = createSlice({
           payload: {
             name,
             exactScore,
+            date: new Date().toISOString(),
           },
         };
       },
