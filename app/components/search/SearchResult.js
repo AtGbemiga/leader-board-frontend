@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import {
   deleteDetails,
@@ -11,9 +11,11 @@ import {
   deleteOpenModal,
   deleteCloseModal,
 } from "@/app/store/features/modal/modalSlice";
+import TimeAgo from "@/app/store/features/timeAgo/TimeAgo";
 
 export const SearchResult = ({ _id, result }) => {
   const dispatch = useDispatch();
+  const data = useSelector((state) => state.score.details);
   const [formdata, setFormData] = useState({
     name: result.name,
     exactScore: result.exactScore,
@@ -21,7 +23,7 @@ export const SearchResult = ({ _id, result }) => {
   const [isEditMode, setEditMode] = useState(false);
 
   async function handleDelete() {
-    const url = `https://leader-board-backend.vercel.app/api/v1/score/${_id}`;
+    const url = `https://leader-board-backend.vercel.app/api/v2/score/${_id}`;
     try {
       await axios.delete(url);
       dispatch(deleteDetails(_id));
@@ -51,7 +53,7 @@ export const SearchResult = ({ _id, result }) => {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const url = `https://leader-board-backend.vercel.app/api/v1/score/${_id}`;
+    const url = `https://leader-board-backend.vercel.app/api/v2/score/${_id}`;
     try {
       await axios.patch(url, formdata);
       dispatch(updateDetails({ _id, ...formdata }));

@@ -36,7 +36,7 @@ export const SingleAscending = ({ _id, item }) => {
   async function handleUpdate(e) {
     e.preventDefault();
 
-    const url = `https://leader-board-backend.vercel.app/api/v1/score/${_id}`;
+    const url = `https://leader-board-backend.vercel.app/api/v2/score/${_id}`;
 
     const formData = {
       name: ascendingForm.name,
@@ -67,7 +67,7 @@ export const SingleAscending = ({ _id, item }) => {
 
   async function handleDelete(e) {
     e.preventDefault();
-    const url = `https://leader-board-backend.vercel.app/api/v1/score/${_id}`;
+    const url = `https://leader-board-backend.vercel.app/api/v2/score/${_id}`;
     try {
       await axios.delete(url);
       dispatch(deleteDetails(_id));

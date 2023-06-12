@@ -5,7 +5,7 @@ import { addDetails } from "../store/features/score/scoreSlice";
 
 const Update = ({ _id, formData, setFormData }) => {
   const dispatch = useDispatch();
-  const url = `https://leader-board-backend.vercel.app/api/v1/score/${_id}`;
+  const url = `https://leader-board-backend.vercel.app/api/v2/score/${_id}`;
 
   function handleChange(event) {
     const { name, value } = event.target;
