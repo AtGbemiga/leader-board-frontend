@@ -21,6 +21,7 @@ export default function Home() {
   const { isOpenDelete } = useSelector((store) => store.modal);
   const { isOpenPost } = useSelector((store) => store.modal);
   const { isLoading } = useSelector((store) => store.score);
+  const { error } = useSelector((store) => store.score);
   const [results, setResults] = useState([]);
 
   useEffect(() => {
@@ -51,6 +52,8 @@ export default function Home() {
       {isOpenPost && <PostModal />}
       {isOpenDelete && <DeleteModal />}
       {isOpen && <Modal />}
+
+      {error && <h1>Failed to load. Check your internet and try again</h1>}
     </main>
   );
 }

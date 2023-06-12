@@ -102,7 +102,7 @@ export const Score = ({ _id, name, exactScore, editMode }) => {
           </button>
         </form>
       ) : (
-        <div className="" style={{ backgroundColor: "white" }}>
+        <div style={{ backgroundColor: "white" }}>
           <div className="row card-body">
             <div className="col">
               <p style={{ margin: 0, padding: 0 }}>{name}</p>

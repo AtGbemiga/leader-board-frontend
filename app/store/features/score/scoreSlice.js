@@ -4,6 +4,7 @@ const url = "https://leader-board-backend.vercel.app/api/v2/score/";
 const initialState = {
   details: [],
   isLoading: false,
+  error: null,
 };
 export const getScores = createAsyncThunk("score/getScores", async () => {
   try {
@@ -49,13 +50,16 @@ const scoreSlice = createSlice({
     builder
       .addCase(getScores.pending, (state) => {
         state.isLoading = true;
+        state.error = null;
       })
       .addCase(getScores.fulfilled, (state, action) => {
         state.isLoading = false;
         state.details = action.payload;
+        state.error = null;
       })
-      .addCase(getScores.rejected, (state) => {
+      .addCase(getScores.rejected, (state, action) => {
         state.isLoading = false;
+        state.error = action.error;
       });
   },
 });
