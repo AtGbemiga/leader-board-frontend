@@ -1,4 +1,4 @@
-This is the frontend of the full stack leader board app. It has CRUD functionality. The technologies used are Next js, Figma and Bootstrap.
+This is the frontend of the full stack leader board app. It has CRUD functionality. The technologies used are Next js, Redux, Date-fns, Figma and Bootstrap.
 
 *Note: Serve hosting limit may impact request. Reload to try again if you encounter such errors.
 
