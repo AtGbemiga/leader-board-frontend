@@ -105,7 +105,7 @@ export const SearchResult = ({ _id, result }) => {
         </form>
       ) : (
         <div
-          className="card text-left my-2 border border-danger"
+          className="card text-left my-2"
           style={{ backgroundColor: "white" }}
         >
           <div className="row card-body">
